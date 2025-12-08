@@ -1,0 +1,101 @@
+print("UNIVERSIDAD ESTATAL AMAZONICA")
+print("Desarrollo de Ejemplos de Técnicas de Programación")
+print("Autor Juan Carlos Pérez León")
+print("Abstracción, encapsulación, herencia y polimorfismo")
+print("Curso 2526-UEA-L-UFB-030-A\n")
+from abc import ABC, abstractmethod
+# ===================== 1. ABSTRACCIÓN =====================
+#La clase AnimalSalvaje define lo esencial que todos los animales salvajes deben tener:
+#*un sonido
+#*un hábitat
+#No importa cómo lo hagan; solo define qué deben hacer.
+class AnimalSalvaje(ABC):
+    """Clase abstracta que representa un animal salvaje."""
+
+    @abstractmethod
+    def sonido(self):
+        pass
+
+    @abstractmethod
+    def habitat(self):
+        pass
+
+    def descripcion(self):
+        return f"Soy un {self.__class__.__name__}, un animal salvaje."
+
+
+# ===================== 2. ENCAPSULAMIENTO =====================
+#En León:
+#self._edad
+#self._peso
+class Leon(AnimalSalvaje):
+    def __init__(self, edad, peso):
+        self._edad = edad        # atributos encapsulados
+        self._peso = peso
+
+    # getters / setters controlados
+    @property
+    def edad(self):
+        return self._edad
+
+    @edad.setter
+    def edad(self, valor):
+        if valor < 0:
+            raise ValueError("La edad no puede ser negativa.")
+        self._edad = valor
+
+    @property
+    def peso(self):
+        return self._peso
+
+    @peso.setter
+    def peso(self, valor):
+        if valor <= 0:
+            raise ValueError("El peso debe ser mayor a 0.")
+        self._peso = valor
+
+    # implementación obligatoria
+    def sonido(self):
+        return "Ruge"
+
+    def habitat(self):
+        return "Sabana africana"
+
+
+# ===================== HERENCIA =====================
+class Tigre(AnimalSalvaje):
+    """El tigre hereda de AnimalSalvaje y debe implementar los métodos abstractos."""
+
+    def sonido(self):
+        return "Gruñe"
+
+    def habitat(self):
+        return "Selvas de Asia"
+
+
+class Aguila(AnimalSalvaje):
+    def sonido(self):
+        return "Chilla"
+
+    def habitat(self):
+        return "Montañas y acantilados"
+
+
+# ===================== 4. POLIMORFISMO =====================
+def mostrar_info(animal: AnimalSalvaje):
+    """Función polimórfica: acepta cualquier AnimalSalvaje."""
+    print(animal.descripcion())
+    print("Sonido:", animal.sonido())
+    print("Hábitat:", animal.habitat())
+    print("-" * 40)
+
+
+# ===================== DEMOSTRACIÓN =====================
+animales = [
+    Leon(edad=5, peso=190),
+    Tigre(),
+    Aguila()
+]
+
+for a in animales:
+    mostrar_info(a)
