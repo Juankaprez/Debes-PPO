@@ -1,2 +1,2 @@
 # JuanPerez
-Fundamentos de la Programación
+Programación Orientada a Objetos
