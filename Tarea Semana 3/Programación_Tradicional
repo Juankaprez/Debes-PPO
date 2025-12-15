@@ -1,0 +1,21 @@
+print("UNIVERSIDAD ESTATAL AMAZONICA")
+print("\nProgramación Tradicional Promedio de Temperaturas")
+print("Autor: Juan Carlos Pérez León")
+
+import statistics
+
+temperaturas_lista = []
+num_dias = 5 # Puedes pedirle esto al usuario también
+
+print(f"Ingresa las temperaturas para {num_dias} días:")
+
+for i in range(num_dias):
+    # Pide la temperatura, la convierte a número flotante y la guarda
+    temp = float(input(f"Día {i+1}: "))
+    temperaturas_lista.append(temp)
+
+# Calcula el promedio
+promedio_usuario = statistics.mean(temperaturas_lista)
+
+print(f"\nTemperaturas ingresadas: {temperaturas_lista}")
+print(f"El promedio es: {promedio_usuario:.2f} °C")
