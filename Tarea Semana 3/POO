@@ -1,0 +1,39 @@
+print("UNIVERSIDAD ESTATAL AMAZONICA")
+print("\nProgramación Tradicional Promedio de Temperaturas")
+print("Autor: Juan Carlos Pérez León")
+
+# Clase base: información general del clima
+class Clima:
+    def __init__(self, num_dias):
+        self._num_dias = num_dias            # Encapsulamiento
+        self._temperaturas = []
+
+    def ingresar_temperatura(self, temp):
+        self._temperaturas.append(temp)
+
+    def calcular_promedio(self):
+        pass   # Método que será redefinido (polimorfismo)
+
+
+# Clase derivada: clima semanal
+class ClimaSemanal(Clima):
+
+    # Polimorfismo: redefinición del método
+    def calcular_promedio(self):
+        suma = 0
+        for t in self._temperaturas:
+            suma += t
+        return suma / self._num_dias
+
+
+# Programa principal
+dias = 5
+clima = ClimaSemanal(dias)
+
+print("Ingresa las temperaturas de", dias, "días")
+
+for i in range(dias):
+    temp = float(input("Día " + str(i + 1) + ": "))
+    clima.ingresar_temperatura(temp)
+
+print("\nEl promedio es:", clima.calcular_promedio())
